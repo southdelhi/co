@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SDCG - South Delhi Consulting Group</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #d4b3ff 0%, #e8d5ff 100%); /* Similar to main hero but inverted or slightly different */
+            padding: 120px 0 60px 0;
+            text-align: center;
+            color: #333;
+        }
+        .about-hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .about-hero p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        .about-content-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .about-content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            text-align: left;
+        }
+        .about-content-container h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .about-content-container p {
+            font-size: 1.05rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .about-content-container .highlight {
+            color: #8b5cf6; /* Accent color */
+            font-weight: 600;
+        }
+        .team-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .team-member-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+        }
+        .team-member-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+        .team-member-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .team-member-card p {
+            font-size: 0.95rem;
+            color: #777;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h2>SDCG</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" onclick="return false;">Services <span class="dropdown-arrow">▼</span></a>
+                     <div class="dropdown-menu">
+                        <div class="dropdown-section purple" onclick="window.location.href='services.html#home-purchase'">
+                            <h4>Home Purchase</h4>
+                            <p>Buy your dream home</p>
+                        </div>
+                        <div class="dropdown-section blue" onclick="window.location.href='services.html#home-loan-transfer'">
+                            <h4>Home Loan Transfer</h4>
+                            <p>Better rates & savings</p>
+                        </div>
+                        <div class="dropdown-section green" onclick="window.location.href='services.html#construction-loan'">
+                            <h4>Construction Loan</h4>
+                            <p>Build your home</p>
+                        </div>
+                        <div class="dropdown-section orange" onclick="window.location.href='services.html#loan-against-property'">
+                            <h4>Loan Against Property</h4>
+                            <p>Unlock property value</p>
+                        </div>
+                        <div class="dropdown-section pink" onclick="window.location.href='services.html#top-up-loan'">
+                            <h4>Top-up Loan</h4>
+                            <p>Additional funding</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="blogs.html" class="nav-link">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-btn" onclick="openModal()">Get Started →</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-container">
+            <h1>About SDCG</h1>
+            <p>Your Trusted Partner in Navigating the Path to Homeownership in Delhi NCR.</p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="about-content-section">
+        <div class="about-content-container">
+            <h2>Our Story</h2>
+            <p>Founded with a vision to simplify the home loan process, South Delhi Consulting Group (SDCG) has grown into a leading financial consultancy in the Delhi NCR region. We understand that buying a home is one of the most significant decisions in life, and securing the right financing can be a daunting task. That's where we come in.</p>
+            <p>Our journey began with a small team of passionate financial experts committed to providing <span class="highlight">transparent, unbiased, and client-centric</span> home loan advisory. Over the years, we've built strong relationships with a wide network of banks and financial institutions, enabling us to offer our clients a diverse range of loan products tailored to their unique needs.</p>
+
+            <h2>Our Mission</h2>
+            <p>Our mission is to empower individuals and families in Delhi NCR to achieve their dream of homeownership by providing expert guidance, personalized solutions, and a hassle-free loan application experience. We strive to be more than just consultants; we aim to be your <span class="highlight">trusted partners</span> throughout your financial journey.</p>
+            
+            <h2>Why Choose SDCG?</h2>
+            <p><strong>Expertise:</strong> Our team possesses in-depth knowledge of the Delhi NCR real estate market and the intricacies of home loan products. We stay updated with the latest market trends and lending policies to offer you the best advice.</p>
+            <p><strong>Wide Network:</strong> With access to over 25+ lenders, we can compare and find the most competitive interest rates and favorable terms for your specific profile.</p>
+            <p><strong>Personalized Service:</strong> We believe every client is unique. We take the time to understand your financial situation, goals, and preferences to recommend the most suitable loan options.</p>
+            <p><strong>Transparency:</strong> We operate with complete transparency, ensuring you understand all terms, conditions, and charges associated with your loan. No hidden fees, no surprises.</p>
+            <p><strong>Efficiency:</strong> We leverage technology and streamlined processes to make your loan application quick and efficient, minimizing paperwork and saving you valuable time.</p>
+
+            <div class="team-section">
+                 <h2>Meet Our Core Team (Example)</h2>
+                 <div class="team-grid">
+                    <div class="team-member-card">
+                        <img src="/placeholder.svg?height=120&width=120" alt="Team Member 1">
+                        <h3>Rohan Mehra</h3>
+                        <p>Founder & Chief Loan Strategist</p>
+                    </div>
+                    <div class="team-member-card">
+                        <img src="/placeholder.svg?height=120&width=120" alt="Team Member 2">
+                        <h3>Priya Singh</h3>
+                        <p>Head of Client Relations</p>
+                    </div>
+                    <div class="team-member-card">
+                        <img src="/placeholder.svg?height=120&width=120" alt="Team Member 3">
+                        <h3>Amit Khanna</h3>
+                        <p>Senior Mortgage Advisor</p>
+                    </div>
+                 </div>
+            </div>
+             <div style="text-align: center; margin-top: 3rem;">
+                <a href="contact.html" class="btn-primary">Get in Touch →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="sdcg-footer">
+      <!-- Main Footer Content -->
+      <div class="sdcg-footer-main-content">
+        <div class="sdcg-footer-grid">
+          <!-- Company Info -->
+          <div class="sdcg-footer-company-info">
+            <div>
+              <h2 class="sdcg-footer-logo">SDCG</h2>
+              <p class="sdcg-footer-description">
+                South Delhi Consulting Group - Your trusted partner for home loans and property financing solutions in
+                Delhi NCR.
+              </p>
+            </div>
+            <div class="sdcg-footer-social-links">
+              <a href="#" class="sdcg-social-icon" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
+              <a href="#" class="sdcg-social-icon" aria-label="Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </a>
+              <a href="#" class="sdcg-social-icon" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="sdcg-social-icon" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="sdcg-footer-links-column">
+            <h3 class="sdcg-footer-heading">Our Services</h3>
+            <ul class="sdcg-footer-list">
+              <li>
+                <a href="services.html#home-purchase" class="sdcg-footer-link sdcg-link-pink">
+                  <span class="sdcg-link-dot sdcg-dot-pink"></span>Home Purchase Loans
+                </a>
+              </li>
+              <li>
+                <a href="services.html#home-loan-transfer" class="sdcg-footer-link sdcg-link-blue">
+                  <span class="sdcg-link-dot sdcg-dot-blue"></span>Home Loan Transfer
+                </a>
+              </li>
+              <li>
+                <a href="services.html#construction-loan" class="sdcg-footer-link sdcg-link-green">
+                  <span class="sdcg-link-dot sdcg-dot-green"></span>Construction Loans
+                </a>
+              </li>
+              <li>
+                <a href="services.html#loan-against-property" class="sdcg-footer-link sdcg-link-orange">
+                  <span class="sdcg-link-dot sdcg-dot-orange"></span>Loan Against Property
+                </a>
+              </li>
+              <li>
+                <a href="services.html#top-up-loan" class="sdcg-footer-link sdcg-link-purple">
+                  <span class="sdcg-link-dot sdcg-dot-purple"></span>Top-up Loans
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="sdcg-footer-links-column">
+            <h3 class="sdcg-footer-heading">Quick Links</h3>
+            <ul class="sdcg-footer-list">
+              <li><a href="about.html" class="sdcg-footer-link">About Us</a></li>
+              <li><a href="index.html#emi-calculator-container" class="sdcg-footer-link">EMI Calculator</a></li>
+              <li><a href="blogs.html" class="sdcg-footer-link">Blogs & Insights</a></li>
+              <li><a href="index.html#testimonialsCarousel" class="sdcg-footer-link">Customer Reviews</a></li>
+              <li><a href="#" class="sdcg-footer-link">Privacy Policy</a></li>
+              <li><a href="#" class="sdcg-footer-link">Terms & Conditions</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="sdcg-footer-contact-column">
+            <h3 class="sdcg-footer-heading">Contact Us</h3>
+            <div class="sdcg-footer-contact-details">
+              <div class="sdcg-contact-item">
+                <svg class="sdcg-contact-icon sdcg-icon-pink" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <p>Block A, Greater Kailash-1<br />New Delhi - 110048</p>
+                </div>
+              </div>
+              <div class="sdcg-contact-item">
+                <svg class="sdcg-contact-icon sdcg-icon-green" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <a href="tel:+919876543210">+91 98765-43210</a>
+              </div>
+              <div class="sdcg-contact-item">
+                <svg class="sdcg-contact-icon sdcg-icon-blue" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                <a href="mailto:info@sdcg.in">info@sdcg.in</a>
+              </div>
+              <div class="sdcg-contact-item">
+                <svg class="sdcg-contact-icon sdcg-icon-orange" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <div>
+                  <p>Mon - Fri: 9:00 AM - 7:00 PM<br />Sat: 10:00 AM - 5:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Section -->
+      <div class="sdcg-footer-newsletter-section">
+        <div class="sdcg-footer-newsletter-content">
+          <div class="sdcg-newsletter-text">
+            <h4 class="sdcg-footer-heading-small">Stay Updated</h4>
+            <p>Get the latest home loan insights and market updates</p>
+          </div>
+          <form class="sdcg-newsletter-form" action="#" method="POST">
+            <input type="email" placeholder="Enter your email" class="sdcg-newsletter-input" required />
+            <button type="submit" class="sdcg-newsletter-button">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="sdcg-footer-bottom-bar">
+        <div class="sdcg-footer-bottom-content">
+          <div>
+            <p class="sdcg-footer-copyright">© 2024 South Delhi Consulting Group. All rights reserved.</p>
+          </div>
+          <div class="sdcg-footer-regulatory-info">
+            <span>Regulated by RBI</span>
+            <span>•</span>
+            <span>RERA Registered</span>
+            <span>•</span>
+            <span>ISO 9001:2015</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+     <!-- Modal script (if not already in script.js) -->
+    <script>
+        // Functions to open and close modal (ensure these are in your script.js or here)
+        function openModal() {
+            const modal = document.getElementById("applicationModal"); // Assuming you have a modal with this ID
+            if (modal) {
+                modal.style.display = "flex";
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("applicationModal");
+            if (modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "visible";
+            }
+        }
+         function openAppointmentModal() {
+            // This can open the same modal or a different one if you create it
+            openModal(); 
+        }
+
+        // Close modal when clicking outside (if not in script.js)
+        document.addEventListener('click', function (event) {
+            const modal = document.getElementById('applicationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+         // Close modal with escape key (if not in script.js)
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+     <!-- Application Modal (copied for consistency) -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Apply for Home Loan</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="applicationFormAboutPage"> <!-- Unique ID for form if needed -->
+                    <div class="form-row">
+                        <input type="text" name="fullName" placeholder="Full Name" required>
+                        <input type="tel" name="mobile" placeholder="Mobile Number" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="email" name="email" placeholder="Email Address">
+                        <input type="number" name="income" placeholder="Monthly Income (₹)">
+                    </div>
+                    <div class="form-row">
+                        <select name="loanType">
+                            <option value="">Select Loan Type</option>
+                            <option value="home-purchase">Home Purchase</option>
+                            <option value="home-transfer">Home Loan Transfer</option>
+                            <option value="construction">Construction Loan</option>
+                            <option value="lap">Loan Against Property</option>
+                            <option value="top-up">Top-up Loan</option>
+                        </select>
+                        <input type="number" name="loanAmount" placeholder="Required Loan Amount (₹)">
+                    </div>
+                    <textarea name="requirements" placeholder="Additional Requirements & Preferred Call Time" rows="3"></textarea>
+                    <button type="submit" class="btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

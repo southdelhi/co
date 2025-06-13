@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDCG - South Delhi Consulting Group | Home Loan Experts in New Delhi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic EMI Calculator Styles (can be moved to styles.css) */
+        .emi-calculator-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: left;
+            max-width: 500px; /* Adjust as needed */
+            margin: 0 auto; /* Center if needed, or align with hero text */
+        }
+        .emi-calculator-container h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .emi-calculator-container .form-group {
+            margin-bottom: 1rem;
+        }
+        .emi-calculator-container .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        /* Hide number input spinners for all browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield; /* Firefox */
+}
+
+        .emi-calculator-container .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        .emi-calculator-container .btn-calculate {
+            background: #333;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        .emi-calculator-container .btn-calculate:hover {
+            background: #555;
+        }
+        .emi-calculator-container .emi-result {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .blogs-section .read-all-blogs-btn-container {
+            text-align: center;
+            margin-top: 2.5rem; /* Space above the button */
+        }
+        .services-section .all-services-btn-container {
+            text-align: center;
+            margin-top: 2.5rem; /* Space above the button */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h2>SDCG</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" onclick="return false;">Services <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-section purple" onclick="window.location.href='services.html#home-purchase'">
+                            <h4>Home Purchase</h4>
+                            <p>Buy your dream home</p>
+                        </div>
+                        <div class="dropdown-section blue" onclick="window.location.href='services.html#home-loan-transfer'">
+                            <h4>Home Loan Transfer</h4>
+                            <p>Better rates & savings</p>
+                        </div>
+                        <div class="dropdown-section green" onclick="window.location.href='services.html#construction-loan'">
+                            <h4>Construction Loan</h4>
+                            <p>Build your home</p>
+                        </div>
+                        <div class="dropdown-section orange" onclick="window.location.href='services.html#loan-against-property'">
+                            <h4>Loan Against Property</h4>
+                            <p>Unlock property value</p>
+                        </div>
+                        <div class="dropdown-section pink" onclick="window.location.href='services.html#top-up-loan'">
+                            <h4>Top-up Loan</h4>
+                            <p>Additional funding</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="blogs.html" class="nav-link">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-btn" onclick="openModal()">Get Started →</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span>Home Loan Solutions</span>
+                    </div>
+                    <h1>Say Hello to Your Perfect Loan</h1>
+                    <p>Explore our range of home loan services to find the perfect solution for you in Delhi NCR.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="openModal()">
+                            Get Started →
+                        </button>
+                        <button class="btn-secondary" onclick="openAppointmentModal()">
+                            Book Appointment →
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- EMI Calculator Start -->
+                    <div class="emi-calculator-container">
+                        <h3>Home Loan EMI Calculator</h3>
+                        <div class="form-group">
+                            <label for="loanAmountCalc">Loan Amount (₹)</label>
+                            <input type="number" id="loanAmountCalc" placeholder="e.g., 5000000">
+                        </div>
+                        <div class="form-group">
+                            <label for="interestRateCalc">Interest Rate (%)</label>
+                            <input type="number" id="interestRateCalc" placeholder="e.g., 8.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="loanTenureCalc">Loan Tenure (Years)</label>
+                            <input type="number" id="loanTenureCalc" placeholder="e.g., 20">
+                        </div>
+                        <button class="btn-calculate" onclick="calculateEMI()">Calculate EMI</button>
+                        <div class="emi-result" id="emiResultDisplay">
+                            Your EMI will be: ₹--
+                        </div>
+                    </div>
+                    <!-- EMI Calculator End -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lenders-section">
+        <div class="lenders-container">
+            <h2>More Lenders, More Options, Better Rates</h2>
+            <div class="bank-logos">
+                <div class="bank-row">
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#1e40af"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="12" font-weight="bold">SBI</text>
+                        </svg>
+                    </div>
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#dc2626"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="10" font-weight="bold">HDFC</text>
+                        </svg>
+                    </div>
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#ea580c"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="10" font-weight="bold">ICICI</text>
+                        </svg>
+                    </div>
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#7c2d12"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="11" font-weight="bold">AXIS</text>
+                        </svg>
+                    </div>
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#dc2626"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="10" font-weight="bold">KOTAK</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="bank-row">
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#1e40af"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="12" font-weight="bold">PNB</text>
+                        </svg>
+                    </div>
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#059669"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="12" font-weight="bold">BOI</text>
+                        </svg>
+                    </div>
+                    <div class="bank-logo">
+                        <svg width="80" height="40" viewBox="0 0 80 40" fill="none">
+                            <rect width="80" height="40" rx="8" fill="#7c3aed"/>
+                            <text x="40" y="25" text-anchor="middle" fill="white" font-size="12" font-weight="bold">LIC</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="services-container">
+            <div class="services-badge">
+                <span>Services</span>
+            </div>
+            <h2>What would you like to do?</h2>
+            <p class="services-description">
+                SDCG is your trusted partner in finding the perfect home loan or refinancing solution.
+                With access to over 25+ lenders, we make the home buying process simple and stress-free.
+            </p>
+
+            <div class="services-grid">
+                <div class="service-card purple-card">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h3>Home Purchase</h3>
+                    <p>Find your dream home with our tailored home loan options. We simplify the buying process for you.</p>
+                    <a href="services.html#home-purchase" class="service-link purple">Explore Options →</a>
+                </div>
+                <div class="service-card pink-card">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M3 9h18M3 15h18M3 20h18M3 4h18M16 4h6M3 4h6M3 20h6M16 20h6M16 15h6M16 9h6" />
+                        </svg>
+                    </div>
+                    <h3>Home Loan Transfer</h3>
+                    <p>Looking to switch your existing home loan? We'll help you find better rates and terms to save money.</p>
+                    <a href="services.html#home-loan-transfer" class="service-link pink">Learn More →</a>
+                </div>
+                <div class="service-card green-card">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M3 3h7a2 2 0 0 1 2 2v14a2 2 0 0 0 2 2h7m-9-16v18m0-5h12m-9 5l4 4 4-4" />
+                        </svg>
+                    </div>
+                    <h3>Construction Loan</h3>
+                    <p>Planning to build your dream home? Our construction loans provide the necessary funds for your project.</p>
+                    <a href="services.html#construction-loan" class="service-link green">Build Your Dream →</a>
+                </div>
+                <div class="service-card orange-card">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M2 10a8 8 0 0 1 8-8h4a8 8 0 1 1-16 6v2a6 6 0 0 0 12 0v-1" />
+                            <path d="M12 15v5m0-10v6" />
+                        </svg>
+                    </div>
+                    <h3>Loan Against Property</h3>
+                    <p>Unlock the value of your property with our loan against property options for your financial needs.</p>
+                    <a href="services.html#loan-against-property" class="service-link orange">Get Funds Now →</a>
+                </div>
+            </div>
+            <div class="all-services-btn-container">
+                 <a href="services.html" class="btn-primary">All Services in Detail →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="process-container">
+            <div class="process-content">
+                <div class="process-left">
+                    <div class="process-badge">
+                        <span>As simple as Hello!</span>
+                    </div>
+                    <h2>The SDCG Process</h2>
+                    <button class="btn-primary" onclick="openModal()">
+                        Apply Now →
+                    </button>
+                </div>
+                <div class="process-right">
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Let's Get to Know You</h3>
+                                <p>Share your property needs and financial situation, so we can work our magic!</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Finding the Perfect Match</h3>
+                                <p>Our tech plays matchmaker, comparing thousands of options from 25+ lenders to find your ideal loan.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Bye-bye Paperwork!</h3>
+                                <p>We handle the documentation and legwork, making the process smooth and stress-free.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Your Dream, Delivered</h3>
+                                <p>We finalize your loan and hand over the keys to your future, faster than you thought possible.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Blogs Section START -->
+    <section class="blogs-section">
+        <div class="blogs-container">
+            <div class="blogs-content"> <!-- This div is for the top part: Discover text + image -->
+                <div class="blogs-left">
+                    <div class="blogs-badge">
+                        <span>Discover</span>
+                    </div>
+                    <h2>Stay Informed with Expert Home Loan Insights</h2>
+                    <p>SDCG offers valuable insights and expert advice on home loans, property investment, and financial planning. With our extensive knowledge of the Delhi NCR market, we help you make informed decisions for your property journey.</p>
+                    <div class="blogs-buttons">
+                        <a href="blogs.html" class="btn-primary"> 
+                            Read Blogs →
+                        </a>
+                        <button class="btn-secondary" onclick="openModal()">
+                            Get Expert Advice →
+                        </button>
+                    </div>
+                </div>
+                <div class="blogs-right">
+                    <img src="/placeholder.svg?height=350&width=450" alt="SDCG Expert Reading Financial Documents">
+                </div>
+            </div>
+            
+            <!-- Blog Posts Carousel Container -->
+            <div id="blogs-grid" class="blogs-carousel-container"> <!-- ID blogs-grid is for scroll target -->
+                <div class="blogs-carousel-header">
+                    <h3>Latest Articles</h3>
+                    <div class="carousel-controls"> 
+                        <button class="carousel-btn prev-btn" onclick="slideBlogCarousel('prev')" id="prevBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn next-btn" onclick="slideBlogCarousel('next')" id="nextBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="blogs-carousel" id="blogsCarousel"> 
+                    <div class="blogs-grid active" data-slide="0"> 
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="/placeholder.svg?height=160&width=300" alt="Home Buying Tips">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-category">Home Buying</div>
+                                <h3>5 Essential Tips for First-Time Home Buyers</h3>
+                                <p>Navigate the Delhi NCR property market with confidence. Learn about documentation, loan eligibility, and smart strategies.</p>
+                                <div class="blog-meta">
+                                    <span class="blog-date">March 15, 2024</span>
+                                    <span class="blog-read-time">5 min read</span>
+                                </div>
+                                <a href="blogs.html#blog-1" class="blog-read-more">Read More →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="/placeholder.svg?height=160&width=300" alt="EMI Calculator">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-category">Financial Planning</div>
+                                <h3>How to Calculate Your Home Loan EMI</h3>
+                                <p>Master EMI calculation and understand how interest rates, tenure, and loan amount affect your monthly payments.</p>
+                                <div class="blog-meta">
+                                    <span class="blog-date">March 10, 2024</span>
+                                    <span class="blog-read-time">7 min read</span>
+                                </div>
+                                <a href="blogs.html#blog-2" class="blog-read-more">Read More →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="/placeholder.svg?height=160&width=300" alt="Loan Approval">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-category">Loan Process</div>
+                                <h3>Understanding Home Loan Approval in 2024</h3>
+                                <p>Get insights into the latest home loan approval criteria, required documents, and tips to increase approval chances.</p>
+                                <div class="blog-meta">
+                                    <span class="blog-date">March 5, 2024</span>
+                                    <span class="blog-read-time">6 min read</span>
+                                </div>
+                                <a href="blogs.html#blog-3" class="blog-read-more">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blogs-grid" data-slide="1"> 
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="/placeholder.svg?height=160&width=300" alt="Investment Strategy">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-category">Investment</div>
+                                <h3>Property Investment vs. Other Options</h3>
+                                <p>Compare property investment with stocks, mutual funds, and fixed deposits. Make informed decisions for your future.</p>
+                                <div class="blog-meta">
+                                    <span class="blog-date">February 28, 2024</span>
+                                    <span class="blog-read-time">8 min read</span>
+                                </div>
+                                <a href="blogs.html#blog-4" class="blog-read-more">Read More →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="/placeholder.svg?height=160&width=300" alt="Tax Benefits">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-category">Tax Planning</div>
+                                <h3>Maximize Tax Benefits on Home Loan</h3>
+                                <p>Learn about Section 80C, 24(b), and other tax deductions available on home loans to save thousands annually.</p>
+                                <div class="blog-meta">
+                                    <span class="blog-date">February 20, 2024</span>
+                                    <span class="blog-read-time">5 min read</span>
+                                </div>
+                                <a href="blogs.html#blog-5" class="blog-read-more">Read More →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="/placeholder.svg?height=160&width=300" alt="Loan Transfer">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-category">Refinancing</div>
+                                <h3>When to Consider Home Loan Transfer?</h3>
+                                <p>Discover the right time to transfer your home loan, potential savings, and the complete process with SDCG's guidance.</p>
+                                <div class="blog-meta">
+                                    <span class="blog-date">February 15, 2024</span>
+                                    <span class="blog-read-time">6 min read</span>
+                                </div>
+                                <a href="blogs.html#blog-6" class="blog-read-more">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="read-all-blogs-btn-container">
+                    <a href="blogs.html" class="btn-primary">Read All Blogs →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Updated Blogs Section END -->
+
+    <section class="interests-section">
+        <div class="interests-container">
+            <h2>Your best interests</h2>
+            <p class="interests-description">
+                Our commitment has always revolved around prioritising your best interests, and our 
+                policies, platform, and team ensure we deliver on that commitment.
+            </p>
+            <div class="interests-grid">
+                <div class="interest-card purple">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1.5-2s-1.5.62-1.5 2a2.5 2.5 0 0 0 2.5 2.5z"/>
+                            <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
+                            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </div>
+                    <h3>Transparency</h3>
+                    <p>We never prioritise or allow sponsorship of any product, bank, or lender over another.</p>
+                </div>
+                <div class="interest-card pink">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Expert Guidance</h3>
+                    <p>We remain uninfluenced by incentives, ensuring unbiased product and lender recommendations.</p>
+                </div>
+                <div class="interest-card green">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/>
+                            <path d="M3 12v6c0 .552.448 1 1 1h16c.552 0 1-.448 1-1v-6"/>
+                        </svg>
+                    </div>
+                    <h3>Best Choice</h3>
+                    <p>With a panel of over 25 banks and lenders, we present you with a choice of more than 2,500 products.</p>
+                </div>
+                <div class="interest-card orange">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h3>Fast Process</h3>
+                    <p>Our commitment to efficiency means a faster, simpler home loan process to find your ideal solution.</p>
+                </div>
+            </div>
+            <div class="interests-cta">
+                <button class="btn-primary" onclick="openModal()">
+                    Get Started →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="testimonials-carousel-header">
+                <h2>What Our Customers Say</h2>
+                <div class="carousel-controls"> 
+                    <button id="prevTestimonialBtn" class="carousel-btn" onclick="slideTestimonialCarousel('prev')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15,18 9,12 15,6"></polyline>
+                        </svg>
+                    </button>
+                    <button id="nextTestimonialBtn" class="carousel-btn" onclick="slideTestimonialCarousel('next')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="testimonials-carousel" id="testimonialsCarousel"> 
+                <div class="testimonials-grid active" data-slide="0">
+                    <div class="testimonial-card">
+                        <div class="quote-icon green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <p>SDCG made my dream of owning a home a reality! Their seamless process and personalized support made me feel confident and supported every step of the way. The team's expertise in Delhi NCR market is unmatched.</p>
+                        <div class="testimonial-author">
+                            <h4>Priya Sharma</h4>
+                            <span>Gurgaon, Haryana, March 2024</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <p>Choosing SDCG was the best decision I made for my home loan transfer needs. Their team was incredibly knowledgeable, responsive, and helped me save money on my monthly mortgage payments.</p>
+                        <div class="testimonial-author">
+                            <h4>Rajesh Kumar</h4>
+                            <span>Noida, Uttar Pradesh, February 2024</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon pink">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <p>I can't thank SDCG enough for their outstanding service. They went above and beyond to find the best loan options for me, making the entire process stress-free and enjoyable.</p>
+                        <div class="testimonial-author">
+                            <h4>Anita Gupta</h4>
+                            <span>South Delhi, Delhi, January 2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonials-grid" data-slide="1">
+                    <div class="testimonial-card">
+                        <div class="quote-icon orange">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <p>SDCG's construction loan helped us build our dream home in Faridabad. Their flexible payment options and constant support throughout the construction phase was exceptional.</p>
+                        <div class="testimonial-author">
+                            <h4>Vikram Singh</h4>
+                            <span>Faridabad, Haryana, December 2023</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <p>As a first-time home buyer, I was nervous about the process. SDCG's team guided me through every step, explained all the terms clearly, and secured the best rate for my budget.</p>
+                        <div class="testimonial-author">
+                            <h4>Neha Agarwal</h4>
+                            <span>Ghaziabad, Uttar Pradesh, November 2023</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote-icon teal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <p>SDCG helped me get a loan against my property for my business expansion. The quick approval and competitive rates made all the difference for my growing business.</p>
+                        <div class="testimonial-author">
+                            <h4>Amit Verma</h4>
+                            <span>Dwarka, Delhi, October 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-us-section" id="contact-us-section">
+        <div class="contact-us-container">
+            <div class="contact-us-badge">
+                <span>Get in Touch</span>
+            </div>
+            <h2>Contact Us</h2>
+            <p class="contact-us-description">
+                Have questions about home loans or need expert advice? Our team is here to help you navigate the mortgage process and find the perfect solution for your needs.
+            </p>
+            <div class="contact-us-cta">
+                <button class="btn-primary" onclick="openModal()">
+                    Apply Now →
+                </button>
+                <a href="contact.html" class="btn-secondary">
+                    Contact Options →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Apply for Home Loan</h2>
+                <span class="close" onclick="closeModal()">×</span>
+            </div>
+            <div class="modal-body">
+                <form id="applicationForm">
+                    <div class="form-row">
+                        <input type="text" name="fullName" placeholder="Full Name" required>
+                        <input type="tel" name="mobile" placeholder="Mobile Number" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="email" name="email" placeholder="Email Address">
+                        <input type="number" name="income" placeholder="Monthly Income (₹)">
+                    </div>
+                    <div class="form-row">
+                        <select name="loanType">
+                            <option value="">Select Loan Type</option>
+                            <option value="home-purchase">Home Purchase</option>
+                            <option value="home-transfer">Home Loan Transfer</option>
+                            <option value="construction">Construction Loan</option>
+                            <option value="lap">Loan Against Property</option>
+                        </select>
+                        <input type="number" name="loanAmount" placeholder="Required Loan Amount (₹)">
+                    </div>
+                    <textarea name="requirements" placeholder="Additional Requirements & Preferred Call Time" rows="3"></textarea>
+                    <button type="submit" class="btn-primary">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<footer class="sdcg-footer">
+  <!-- Main Footer Content -->
+  <div class="sdcg-footer-main-content">
+    <div class="sdcg-footer-grid">
+      <!-- Company Info -->
+      <div class="sdcg-footer-company-info">
+        <div>
+          <h2 class="sdcg-footer-logo">SDCG</h2>
+          <p class="sdcg-footer-description">
+            South Delhi Consulting Group - Your trusted partner for home loans and property financing solutions in
+            Delhi NCR.
+          </p>
+        </div>
+        <div class="sdcg-footer-social-links">
+          <a href="#" class="sdcg-social-icon" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="sdcg-social-icon" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+          <a href="#" class="sdcg-social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="#" class="sdcg-social-icon" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="sdcg-footer-links-column">
+        <h3 class="sdcg-footer-heading">Our Services</h3>
+        <ul class="sdcg-footer-list">
+          <li>
+            <a href="services.html#home-purchase" class="sdcg-footer-link sdcg-link-pink">
+              <span class="sdcg-link-dot sdcg-dot-pink"></span>Home Purchase Loans
+            </a>
+          </li>
+          <li>
+            <a href="services.html#home-loan-transfer" class="sdcg-footer-link sdcg-link-blue">
+              <span class="sdcg-link-dot sdcg-dot-blue"></span>Home Loan Transfer
+            </a>
+          </li>
+          <li>
+            <a href="services.html#construction-loan" class="sdcg-footer-link sdcg-link-green">
+              <span class="sdcg-link-dot sdcg-dot-green"></span>Construction Loans
+            </a>
+          </li>
+          <li>
+            <a href="services.html#loan-against-property" class="sdcg-footer-link sdcg-link-orange">
+              <span class="sdcg-link-dot sdcg-dot-orange"></span>Loan Against Property
+            </a>
+          </li>
+          <li>
+            <a href="services.html#top-up-loan" class="sdcg-footer-link sdcg-link-purple">
+              <span class="sdcg-link-dot sdcg-dot-purple"></span>Top-up Loans
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="sdcg-footer-links-column">
+        <h3 class="sdcg-footer-heading">Quick Links</h3>
+        <ul class="sdcg-footer-list">
+          <li><a href="about.html" class="sdcg-footer-link">About Us</a></li>
+          <li><a href="#emi-calculator-container" class="sdcg-footer-link">EMI Calculator</a></li>
+          <li><a href="blogs.html" class="sdcg-footer-link">Blogs & Insights</a></li>
+          <li><a href="#testimonialsCarousel" class="sdcg-footer-link">Customer Reviews</a></li>
+          <li><a href="#" class="sdcg-footer-link">Privacy Policy</a></li>
+          <li><a href="#" class="sdcg-footer-link">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="sdcg-footer-contact-column">
+        <h3 class="sdcg-footer-heading">Contact Us</h3>
+        <div class="sdcg-footer-contact-details">
+          <div class="sdcg-contact-item">
+            <svg class="sdcg-contact-icon sdcg-icon-pink" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div>
+              <p>Block A, Greater Kailash-1<br />New Delhi - 110048</p>
+            </div>
+          </div>
+          <div class="sdcg-contact-item">
+            <svg class="sdcg-contact-icon sdcg-icon-green" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:+919876543210">+91 98765-43210</a>
+          </div>
+          <div class="sdcg-contact-item">
+            <svg class="sdcg-contact-icon sdcg-icon-blue" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+            <a href="mailto:info@sdcg.in">info@sdcg.in</a>
+          </div>
+          <div class="sdcg-contact-item">
+            <svg class="sdcg-contact-icon sdcg-icon-orange" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div>
+              <p>Mon - Fri: 9:00 AM - 7:00 PM<br />Sat: 10:00 AM - 5:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Section -->
+  <div class="sdcg-footer-newsletter-section">
+    <div class="sdcg-footer-newsletter-content">
+      <div class="sdcg-newsletter-text">
+        <h4 class="sdcg-footer-heading-small">Stay Updated</h4>
+        <p>Get the latest home loan insights and market updates</p>
+      </div>
+      <form class="sdcg-newsletter-form" action="#" method="POST">
+        <input type="email" placeholder="Enter your email" class="sdcg-newsletter-input" required />
+        <button type="submit" class="sdcg-newsletter-button">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="sdcg-footer-bottom-bar">
+    <div class="sdcg-footer-bottom-content">
+      <div>
+        <p class="sdcg-footer-copyright">© 2024 South Delhi Consulting Group. All rights reserved.</p>
+      </div>
+      <div class="sdcg-footer-regulatory-info">
+        <span>Regulated by RBI</span>
+        <span>•</span>
+        <span>RERA Registered</span>
+        <span>•</span>
+        <span>ISO 9001:2015</span>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script src="script.js"></script>
+    <script>
+        function calculateEMI() {
+            const principal = parseFloat(document.getElementById('loanAmountCalc').value);
+            const annualRate = parseFloat(document.getElementById('interestRateCalc').value);
+            const tenureYears = parseFloat(document.getElementById('loanTenureCalc').value);
+            const resultDisplay = document.getElementById('emiResultDisplay');
+
+            if (isNaN(principal) || isNaN(annualRate) || isNaN(tenureYears) || principal <= 0 || annualRate <= 0 || tenureYears <= 0) {
+                resultDisplay.textContent = 'Please enter valid values.';
+                return;
+            }
+
+            const monthlyRate = annualRate / (12 * 100);
+            const tenureMonths = tenureYears * 12;
+
+            const emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, tenureMonths)) / (Math.pow(1 + monthlyRate, tenureMonths) - 1);
+
+            if (isFinite(emi)) {
+                resultDisplay.textContent = `Your EMI will be: ₹${emi.toFixed(0)}`;
+            } else {
+                resultDisplay.textContent = 'Could not calculate EMI. Check inputs.';
+            }
+        }
+    </script>
+</body>
+</html>
